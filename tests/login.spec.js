@@ -1,5 +1,7 @@
+require('dotenv').config();
 const { test, expect } = require('@playwright/test');
 const LoginPage = require('../pages/LoginPage');
+
 
 test('Naukri login test', async ({ page }) => {
 
@@ -10,8 +12,8 @@ test('Naukri login test', async ({ page }) => {
     await loginPage.clickLogin();
 
     await loginPage.enterCredentials(
-        'rajalebalram@gmail.com',
-        'Balram@1214'
+        process.env.EMAIL,
+        process.env.PASSWORD
     );
 
     await loginPage.clickLoginButton();
@@ -22,7 +24,7 @@ test('Naukri login test', async ({ page }) => {
 
     //await page.waitForSelector(loginPage.resumeHeadline);
     //await page.click(loginPage.resumeHeadline);
-    await page.click(loginPage.resumeHeadline);  
+    await page.click(loginPage.resumeHeadline);
 
     await page.keyboard.press('Control+A');
 
